@@ -9,10 +9,30 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>BoxFitApp.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>884353531A02B67C00D0D204</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>884353661A02B6CF00D0D204</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>884353751A02B73800D0D204</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>884353871A02B73800D0D204</key>
 		<dict>
 			<key>primary</key>
 			<true/>

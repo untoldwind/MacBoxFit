@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		8843535A1A02B67C00D0D204 /* BoxFitView.h in Headers */ = {isa = PBXBuildFile; fileRef = 884353591A02B67C00D0D204 /* BoxFitView.h */; };
 		8843535C1A02B67C00D0D204 /* BoxFitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8843535B1A02B67C00D0D204 /* BoxFitView.m */; };
+		8843537C1A02B73800D0D204 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8843537B1A02B73800D0D204 /* AppDelegate.m */; };
+		8843537E1A02B73800D0D204 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8843537D1A02B73800D0D204 /* main.m */; };
+		884353801A02B73800D0D204 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8843537F1A02B73800D0D204 /* Images.xcassets */; };
+		884353831A02B73800D0D204 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 884353811A02B73800D0D204 /* MainMenu.xib */; };
+		88AC1F1E1A02BAFC003C2391 /* BoxFitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8843535B1A02B67C00D0D204 /* BoxFitView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -16,10 +21,24 @@
 		884353581A02B67C00D0D204 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		884353591A02B67C00D0D204 /* BoxFitView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoxFitView.h; sourceTree = "<group>"; };
 		8843535B1A02B67C00D0D204 /* BoxFitView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BoxFitView.m; sourceTree = "<group>"; };
+		884353761A02B73800D0D204 /* BoxFitApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoxFitApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		884353791A02B73800D0D204 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8843537A1A02B73800D0D204 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		8843537B1A02B73800D0D204 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		8843537D1A02B73800D0D204 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8843537F1A02B73800D0D204 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		884353821A02B73800D0D204 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		884353501A02B67C00D0D204 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		884353731A02B73800D0D204 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -33,6 +52,7 @@
 			isa = PBXGroup;
 			children = (
 				884353561A02B67C00D0D204 /* BoxFit */,
+				884353771A02B73800D0D204 /* BoxFitApp */,
 				884353551A02B67C00D0D204 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				884353541A02B67C00D0D204 /* BoxFit.saver */,
+				884353761A02B73800D0D204 /* BoxFitApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -59,6 +80,27 @@
 			isa = PBXGroup;
 			children = (
 				884353581A02B67C00D0D204 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		884353771A02B73800D0D204 /* BoxFitApp */ = {
+			isa = PBXGroup;
+			children = (
+				8843537A1A02B73800D0D204 /* AppDelegate.h */,
+				8843537B1A02B73800D0D204 /* AppDelegate.m */,
+				8843537F1A02B73800D0D204 /* Images.xcassets */,
+				884353811A02B73800D0D204 /* MainMenu.xib */,
+				884353781A02B73800D0D204 /* Supporting Files */,
+			);
+			path = BoxFitApp;
+			sourceTree = "<group>";
+		};
+		884353781A02B73800D0D204 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				884353791A02B73800D0D204 /* Info.plist */,
+				8843537D1A02B73800D0D204 /* main.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -95,6 +137,23 @@
 			productReference = 884353541A02B67C00D0D204 /* BoxFit.saver */;
 			productType = "com.apple.product-type.bundle";
 		};
+		884353751A02B73800D0D204 /* BoxFitApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 884353901A02B73800D0D204 /* Build configuration list for PBXNativeTarget "BoxFitApp" */;
+			buildPhases = (
+				884353721A02B73800D0D204 /* Sources */,
+				884353731A02B73800D0D204 /* Frameworks */,
+				884353741A02B73800D0D204 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BoxFitApp;
+			productName = BoxFitApp;
+			productReference = 884353761A02B73800D0D204 /* BoxFitApp.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -107,6 +166,9 @@
 					884353531A02B67C00D0D204 = {
 						CreatedOnToolsVersion = 6.1;
 					};
+					884353751A02B73800D0D204 = {
+						CreatedOnToolsVersion = 6.1;
+					};
 				};
 			};
 			buildConfigurationList = 8843534E1A02B67C00D0D204 /* Build configuration list for PBXProject "BoxFit" */;
@@ -115,6 +177,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 8843534A1A02B67C00D0D204;
 			productRefGroup = 884353551A02B67C00D0D204 /* Products */;
@@ -122,6 +185,7 @@
 			projectRoot = "";
 			targets = (
 				884353531A02B67C00D0D204 /* BoxFit */,
+				884353751A02B73800D0D204 /* BoxFitApp */,
 			);
 		};
 /* End PBXProject section */
@@ -131,6 +195,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		884353741A02B73800D0D204 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				884353801A02B73800D0D204 /* Images.xcassets in Resources */,
+				884353831A02B73800D0D204 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,7 +218,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		884353721A02B73800D0D204 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88AC1F1E1A02BAFC003C2391 /* BoxFitView.m in Sources */,
+				8843537E1A02B73800D0D204 /* main.m in Sources */,
+				8843537C1A02B73800D0D204 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		884353811A02B73800D0D204 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				884353821A02B73800D0D204 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		8843535D1A02B67C00D0D204 /* Debug */ = {
@@ -244,6 +338,34 @@
 			};
 			name = Release;
 		};
+		884353911A02B73800D0D204 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = BoxFitApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		884353921A02B73800D0D204 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = BoxFitApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -263,6 +385,16 @@
 				884353611A02B67C00D0D204 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		884353901A02B73800D0D204 /* Build configuration list for PBXNativeTarget "BoxFitApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				884353911A02B73800D0D204 /* Debug */,
+				884353921A02B73800D0D204 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
