@@ -47,4 +47,26 @@
     self.animationTimer = [NSTimer scheduledTimerWithTimeInterval:self.screensaver.animationTimeInterval target:self.screensaver selector:NSSelectorFromString(@"_oneStep:") userInfo:nil repeats:YES];
 }
 
+- (void)stopAnimation {
+    if (self.animationTimer == nil) {
+        return;
+    }
+    [self.animationTimer invalidate];
+    self.animationTimer = nil;
+    
+    [self.screensaver stopAnimation];
+}
+
+- (IBAction)openConfiguration:(id)sender {
+    if ( !self.screensaver.hasConfigureSheet )
+        return;
+
+    [self stopAnimation];
+    
+    [self.window beginSheet:self.screensaver.configureSheet completionHandler:^(NSModalResponse returnCode) {
+        [self.window.contentView setNeedsDisplay:YES];
+        [self startAnimation];
+    } ];
+}
+
 @end

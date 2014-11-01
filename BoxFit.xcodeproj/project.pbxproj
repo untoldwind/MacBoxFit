@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		880870651A05308800D3CEAC /* BoxFitConfigWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 880870641A05308800D3CEAC /* BoxFitConfigWindow.xib */; };
+		880870681A0530D900D3CEAC /* BoxFitConfigWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 880870661A0530D900D3CEAC /* BoxFitConfigWindowController.h */; };
+		880870691A0530D900D3CEAC /* BoxFitConfigWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 880870671A0530D900D3CEAC /* BoxFitConfigWindowController.m */; };
+		8808706A1A05310600D3CEAC /* BoxFitConfigWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 880870671A0530D900D3CEAC /* BoxFitConfigWindowController.m */; };
+		8808706B1A05382000D3CEAC /* BoxFitConfigWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 880870641A05308800D3CEAC /* BoxFitConfigWindow.xib */; };
 		8843535A1A02B67C00D0D204 /* BoxFitView.h in Headers */ = {isa = PBXBuildFile; fileRef = 884353591A02B67C00D0D204 /* BoxFitView.h */; };
 		8843535C1A02B67C00D0D204 /* BoxFitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8843535B1A02B67C00D0D204 /* BoxFitView.m */; };
 		8843537C1A02B73800D0D204 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8843537B1A02B73800D0D204 /* AppDelegate.m */; };
@@ -14,9 +19,15 @@
 		884353801A02B73800D0D204 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8843537F1A02B73800D0D204 /* Images.xcassets */; };
 		884353831A02B73800D0D204 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 884353811A02B73800D0D204 /* MainMenu.xib */; };
 		88AC1F1E1A02BAFC003C2391 /* BoxFitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8843535B1A02B67C00D0D204 /* BoxFitView.m */; };
+		88CAE5241A041C5F00D786F1 /* ColorHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 88CAE5221A041C5F00D786F1 /* ColorHelper.h */; };
+		88CAE5251A041C5F00D786F1 /* ColorHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CAE5231A041C5F00D786F1 /* ColorHelper.m */; };
+		88CAE5261A041C6D00D786F1 /* ColorHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CAE5231A041C5F00D786F1 /* ColorHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		880870641A05308800D3CEAC /* BoxFitConfigWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BoxFitConfigWindow.xib; sourceTree = "<group>"; };
+		880870661A0530D900D3CEAC /* BoxFitConfigWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxFitConfigWindowController.h; sourceTree = "<group>"; };
+		880870671A0530D900D3CEAC /* BoxFitConfigWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxFitConfigWindowController.m; sourceTree = "<group>"; };
 		884353541A02B67C00D0D204 /* BoxFit.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BoxFit.saver; sourceTree = BUILT_PRODUCTS_DIR; };
 		884353581A02B67C00D0D204 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		884353591A02B67C00D0D204 /* BoxFitView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoxFitView.h; sourceTree = "<group>"; };
@@ -28,6 +39,8 @@
 		8843537D1A02B73800D0D204 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8843537F1A02B73800D0D204 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		884353821A02B73800D0D204 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		88CAE5221A041C5F00D786F1 /* ColorHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorHelper.h; sourceTree = "<group>"; };
+		88CAE5231A041C5F00D786F1 /* ColorHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +85,11 @@
 				884353591A02B67C00D0D204 /* BoxFitView.h */,
 				8843535B1A02B67C00D0D204 /* BoxFitView.m */,
 				884353571A02B67C00D0D204 /* Supporting Files */,
+				88CAE5221A041C5F00D786F1 /* ColorHelper.h */,
+				88CAE5231A041C5F00D786F1 /* ColorHelper.m */,
+				880870641A05308800D3CEAC /* BoxFitConfigWindow.xib */,
+				880870661A0530D900D3CEAC /* BoxFitConfigWindowController.h */,
+				880870671A0530D900D3CEAC /* BoxFitConfigWindowController.m */,
 			);
 			path = BoxFit;
 			sourceTree = "<group>";
@@ -112,7 +130,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88CAE5241A041C5F00D786F1 /* ColorHelper.h in Headers */,
 				8843535A1A02B67C00D0D204 /* BoxFitView.h in Headers */,
+				880870681A0530D900D3CEAC /* BoxFitConfigWindowController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,6 +215,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				880870651A05308800D3CEAC /* BoxFitConfigWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,6 +223,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8808706B1A05382000D3CEAC /* BoxFitConfigWindow.xib in Resources */,
 				884353801A02B73800D0D204 /* Images.xcassets in Resources */,
 				884353831A02B73800D0D204 /* MainMenu.xib in Resources */,
 			);
@@ -214,7 +236,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				880870691A0530D900D3CEAC /* BoxFitConfigWindowController.m in Sources */,
 				8843535C1A02B67C00D0D204 /* BoxFitView.m in Sources */,
+				88CAE5251A041C5F00D786F1 /* ColorHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,6 +246,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8808706A1A05310600D3CEAC /* BoxFitConfigWindowController.m in Sources */,
+				88CAE5261A041C6D00D786F1 /* ColorHelper.m in Sources */,
 				88AC1F1E1A02BAFC003C2391 /* BoxFitView.m in Sources */,
 				8843537E1A02B73800D0D204 /* main.m in Sources */,
 				8843537C1A02B73800D0D204 /* AppDelegate.m in Sources */,

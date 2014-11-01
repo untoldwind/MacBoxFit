@@ -7,6 +7,8 @@
 //
 
 #import "BoxFitView.h"
+#import "ColorHelper.h"
+#import "BoxFitConfigWindowController.h"
 
 typedef NS_OPTIONS(UInt8, BoxFlags) {
     ALIVE = 1,
@@ -15,8 +17,8 @@ typedef NS_OPTIONS(UInt8, BoxFlags) {
 };
 
 typedef struct {
-    UInt32 fill_color;
     int32_t x, y, w, h;
+    UInt8 colorIdx;
     BoxFlags flags;
 } Box;
 
@@ -26,25 +28,31 @@ typedef struct {
     Box *boxes;
     BOOL growing;
     BOOL circles;
+    BOOL horizontal;
     UInt16 inc;
     UInt16 spacing;
     UInt16 borderSize;
     UInt16 lifeBoxCount;
     UInt16 maxBoxCount;
+    UInt16 ncolors;
     NSColor *background;
+    NSArray *colors;
+    
+    BoxFitConfigWindowController *configController;
+    ScreenSaverDefaults *defaults;
 }
 
 - (instancetype)initWithFrame:(NSRect)frame isPreview:(BOOL)isPreview
 {
     self = [super initWithFrame:frame isPreview:isPreview];
     if (self) {
-        ScreenSaverDefaults *defaults;
-        
         defaults = [ScreenSaverDefaults defaultsForModuleWithName:@"BoxFit"];
         
-        [defaults registerDefaults:@{@"lifeBoxCount":@50, @"maxBoxCount":@650, @"growBy":@1, @"spacing":@0, @"boderSize":@0}];
+        [defaults registerDefaults:@{@"lifeBoxCount":@50, @"maxBoxCount":@5000, @"growBy":@1, @"spacing":@1, @"borderSize":@0, @"colors":@64}];
         
-        self.animationTimeInterval = 1/30.0;
+        self.animationTimeInterval = 1/50.0;
+        
+        configController = [[BoxFitConfigWindowController alloc] initWithDefaults:defaults];
     }
     return self;
 }
@@ -53,17 +61,14 @@ typedef struct {
 {
     [super startAnimation];
     
-    ScreenSaverDefaults *defaults;
-    
-    defaults = [ScreenSaverDefaults defaultsForModuleWithName:@"BoxFit"];
-
     background = [NSColor blackColor];
     lifeBoxCount = [defaults integerForKey:@"lifeBoxCount"];
     maxBoxCount = [defaults integerForKey:@"maxBoxCount"];
-    boxesSize = lifeBoxCount * 2;
+    boxesSize = maxBoxCount;
     inc = [defaults integerForKey:@"growBy"];
     spacing = [defaults integerForKey:@"spacing"];
     borderSize = [defaults integerForKey:@"borderSize"];
+    ncolors = [defaults integerForKey:@"colors"];
     boxes = calloc(boxesSize, sizeof(Box));
 
     [self resetBoxes];
@@ -79,6 +84,8 @@ typedef struct {
 - (void)drawRect:(NSRect)rect
 {
     [super drawRect:rect];
+    [background set];
+    NSRectFill(self.bounds);
 }
 
 - (void)animateOneFrame
@@ -93,12 +100,20 @@ typedef struct {
 
 - (BOOL)hasConfigureSheet
 {
-    return NO;
+    return YES;
 }
 
-- (NSWindow*)configureSheet
+- (NSWindow *)configureSheet
 {
-    return nil;
+    return configController.window;
+}
+
+- (IBAction)saveAndClose:(id)sender {
+    [self.window.sheetParent endSheet:self.window returnCode:NSModalResponseOK];
+}
+
+- (IBAction)cancelAndClose:(id)sender {
+    [self.window.sheetParent endSheet:self.window returnCode:NSModalResponseAbort];
 }
 
 - (void)drawBoxes {
@@ -110,7 +125,7 @@ typedef struct {
         b->flags &= ~CHANGED;
 
         if (!growing) {
-            int margin = inc + borderSize;
+            int margin = inc + inc + borderSize;
             [background set];
             
             NSRect rect = NSMakeRect(b->x - margin, b->y - margin, b->w + margin * 2, b->h + margin * 2);
@@ -121,7 +136,7 @@ typedef struct {
             }
         }
         
-        [[NSColor blueColor] set];
+        [(NSColor *)colors[b->colorIdx] set];
         
         NSRect rect = NSMakeRect(b->x, b->y, b->w, b->h);
         NSBezierPath *path;
@@ -210,17 +225,9 @@ typedef struct {
     
     /* Add more boxes.
      */
-    while (live_count < lifeBoxCount) {
+    while (live_count < lifeBoxCount && nboxes < maxBoxCount) {
         Box *a;
         nboxes++;
-        if (boxesSize <= nboxes) {
-            boxesSize = (boxesSize * 1.2) + nboxes;
-            boxes = realloc (boxes, boxesSize * sizeof(Box));
-            if (!boxes) {
-                NSLog(@"out of memory (%d boxes)", boxesSize);
-                return;
-            }
-        }
         
         a = &boxes[nboxes - 1];
         a->flags = CHANGED;
@@ -233,18 +240,23 @@ typedef struct {
             
             if(![self boxCollides:a pad:inc2]) {
                 a->flags |= ALIVE;
+                int n = (horizontal
+                         ? (a->x * colors.count / size.width)
+                         : (a->y * colors.count / size.height));
+                a->colorIdx = n % colors.count;
                 live_count++;
                 break;
             }
         }
         
-        if (! (a->flags & ALIVE) ||	/* too many retries; */
-            nboxes > maxBoxCount)		/* that's about 1MB of box structs. */
-        {
-            nboxes--;			/* go into "fade out" mode now. */
+        if (!(a->flags & ALIVE)) {
+            nboxes--;
             growing = NO;
             return;
         }
+    }
+    if(nboxes >= maxBoxCount) {
+        growing = NO;
     }
 }
 
@@ -277,8 +289,13 @@ typedef struct {
 
 - (void)resetBoxes {
     circles = SSRandomIntBetween(0, 1);
+    horizontal = SSRandomIntBetween(0, 1);
     nboxes = 0;
     growing = YES;
+    colors = [ColorHelper smoothColormap:ncolors];
+    
+    if (colors.count == 0)
+        colors = @[[NSColor whiteColor]];
 }
 
 @end

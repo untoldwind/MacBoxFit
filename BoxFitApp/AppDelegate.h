@@ -15,7 +15,7 @@
 @property BoxFitView *screensaver;
 @property NSTimer *animationTimer;
 
-- (void)startAnimation;
+- (IBAction)openConfiguration:(id)sender;
 
 @end
 
