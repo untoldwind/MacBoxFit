@@ -42,8 +42,7 @@ typedef struct {
     ScreenSaverDefaults *defaults;
 }
 
-- (instancetype)initWithFrame:(NSRect)frame isPreview:(BOOL)isPreview
-{
+- (instancetype)initWithFrame:(NSRect)frame isPreview:(BOOL)isPreview {
     self = [super initWithFrame:frame isPreview:isPreview];
     if (self) {
         defaults = [ScreenSaverDefaults defaultsForModuleWithName:@"BoxFit"];
@@ -57,8 +56,7 @@ typedef struct {
     return self;
 }
 
-- (void)startAnimation
-{
+- (void)startAnimation {
     [super startAnimation];
     
     background = [NSColor blackColor];
@@ -74,22 +72,19 @@ typedef struct {
     [self resetBoxes];
 }
 
-- (void)stopAnimation
-{
+- (void)stopAnimation {
     [super stopAnimation];
     
     free(boxes);
 }
 
-- (void)drawRect:(NSRect)rect
-{
+- (void)drawRect:(NSRect)rect {
     [super drawRect:rect];
     [background set];
     NSRectFill(self.bounds);
 }
 
-- (void)animateOneFrame
-{
+- (void)animateOneFrame {
     if ( growing )
         [self growBoxes];
     else
@@ -98,22 +93,12 @@ typedef struct {
     [self drawBoxes];
 }
 
-- (BOOL)hasConfigureSheet
-{
+- (BOOL)hasConfigureSheet {
     return YES;
 }
 
-- (NSWindow *)configureSheet
-{
+- (NSWindow *)configureSheet {
     return configController.window;
-}
-
-- (IBAction)saveAndClose:(id)sender {
-    [self.window.sheetParent endSheet:self.window returnCode:NSModalResponseOK];
-}
-
-- (IBAction)cancelAndClose:(id)sender {
-    [self.window.sheetParent endSheet:self.window returnCode:NSModalResponseAbort];
 }
 
 - (void)drawBoxes {
@@ -173,20 +158,16 @@ typedef struct {
     int32_t ay = box->y + ar;
     int32_t bx = otherBox->x + br;
     int32_t by = otherBox->y + br;
-    int32_t d2 = (((bx - ax) * (bx - ax)) +	/* distance between centers squared */
-              ((by - ay) * (by - ay)));
-    int32_t r2 = ((ar + br + pad) *		/* sum of radii squared */
-              (ar + br + pad));
+    int32_t d2 = (((bx - ax) * (bx - ax)) + ((by - ay) * (by - ay)));
+    int32_t r2 = ((ar + br + pad) * (ar + br + pad));
     return (d2 < r2);
 }
 
 - (BOOL)boxCollides:(Box *)box pad:(UInt16)pad {
     NSSize size = self.bounds.size;
     
-    if (box->x - pad < 0 ||
-        box->y - pad < 0 ||
-        box->x + box->w + pad + pad >= size.width ||
-        box->y + box->h + pad + pad >= size.height)
+    if (box->x - pad < 0 || box->y - pad < 0 ||
+        box->x + box->w + pad + pad >= size.width || box->y + box->h + pad + pad >= size.height)
         return YES;
 
     for (UInt16 i = 0; i < nboxes; i++) {
@@ -227,8 +208,8 @@ typedef struct {
      */
     while (live_count < lifeBoxCount && nboxes < maxBoxCount) {
         Box *a;
+
         nboxes++;
-        
         a = &boxes[nboxes - 1];
         a->flags = CHANGED;
         
