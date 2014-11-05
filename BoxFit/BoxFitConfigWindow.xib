@@ -168,7 +168,7 @@ Gw
                     </slider>
                     <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3nv-l2-K31">
                         <rect key="frame" x="126" y="173" width="142" height="20"/>
-                        <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="200" maxValue="10000" doubleValue="500" tickMarkPosition="above" sliderType="linear" id="xgh-GL-AQM"/>
+                        <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="200" maxValue="20000" doubleValue="500" tickMarkPosition="above" sliderType="linear" id="xgh-GL-AQM"/>
                         <connections>
                             <binding destination="-2" name="value" keyPath="maxBoxCount" id="V5n-LG-3Zo"/>
                         </connections>

@@ -47,6 +47,7 @@
     [_defaults setObject:self.spacing forKey:@"spacing"];
     [_defaults setObject:self.borderSize forKey:@"borderSize"];
     [_defaults setObject:self.colors forKey:@"colors"];
+    [_defaults synchronize];
     [self.window.sheetParent endSheet:self.window returnCode:NSModalResponseOK];
 }
 

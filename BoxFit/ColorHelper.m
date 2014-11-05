@@ -33,13 +33,13 @@ const int MAXPOINTS = 50;
         total_s = 0;
         total_v = 0;
         for (int i = 0; i < npoints; i++) {
-            if (++loop > 1000) break;
+            if (++loop > 10000) break;
             h[i] = SSRandomFloatBetween(0, 1.0);
             s[i] = SSRandomFloatBetween(0, 1.0);
             v[i] = SSRandomFloatBetween(0.2, 1.0);
         
             if (i > 0) {
-                int j = (i+1 == npoints) ? 0 : (i - 1);
+                int j = i - 1;
                 CGFloat dh = h[j] - h[i];
                 CGFloat distance;
             
@@ -104,19 +104,6 @@ const int MAXPOINTS = 50;
 
         if (one_point_oh < 0.99999 || one_point_oh > 1.00001)
             return colors;
-
-        for (i = 0; i < npoints; i++)
-            ncolors[i] = total_ncolors * ratio[i];
-
-        for (i = 0; i < npoints; i++) {
-            int j = (i+1) % npoints;
-            
-            if (ncolors[i] > 0) {
-                dh[i] = (h[j] - h[i]) / ncolors[i];
-                ds[i] = (s[j] - s[i]) / ncolors[i];
-                dv[i] = (v[j] - v[i]) / ncolors[i];
-            }
-        }
         
         if (circum > 0.0001)
             break;
@@ -129,9 +116,20 @@ const int MAXPOINTS = 50;
                          total_ncolors >   2 ? total_ncolors -  1 :
                          0);
     }
-    
-    [colors removeAllObjects];
 
+    for (i = 0; i < npoints; i++)
+        ncolors[i] = total_ncolors * ratio[i];
+    
+    for (i = 0; i < npoints; i++) {
+        int j = (i+1) % npoints;
+        
+        if (ncolors[i] > 0) {
+            dh[i] = (h[j] - h[i]) / ncolors[i];
+            ds[i] = (s[j] - s[i]) / ncolors[i];
+            dv[i] = (v[j] - v[i]) / ncolors[i];
+        }
+    }
+    
     for (i = 0; i < npoints; i++) {
         for (int j = 0; j < ncolors[i]; j++) {
             [colors addObject:[NSColor colorWithCalibratedHue:(h[i] + (j * dh[i])) saturation:(s[i] + (j * ds[i])) brightness:(v[i] + (j * dv[i])) alpha:1.0f]];
@@ -149,7 +147,7 @@ const int MAXPOINTS = 50;
     NSMutableArray *colors = [NSMutableArray array];
     
     wanted = total_ncolors;
-    if (wanted)
+    if (closed)
         wanted = (wanted / 2) + 1;
     
     dh = (h2 - h1) / wanted;
