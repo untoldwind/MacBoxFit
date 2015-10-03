@@ -114,30 +114,34 @@ typedef struct {
             [background set];
             
             NSRect rect = NSMakeRect(b->x - margin, b->y - margin, b->w + margin * 2, b->h + margin * 2);
+            NSBezierPath *path;
             if (circles) {
-                [[NSBezierPath bezierPathWithOvalInRect:rect] fill];
+                path = [NSBezierPath bezierPathWithOvalInRect:rect];
             } else {
-                [[NSBezierPath bezierPathWithRect:rect] fill];
+                path = [NSBezierPath bezierPathWithRect:rect];
             }
-        }
-        
-        [(NSColor *)colors[b->colorIdx] set];
-        
-        NSRect rect = NSMakeRect(b->x, b->y, b->w, b->h);
-        NSBezierPath *path;
-        
-        if (circles) {
-            path = [NSBezierPath bezierPathWithOvalInRect:rect];
-        } else {
-            path = [NSBezierPath bezierPathWithRect:rect];
-        }
-        [path fill];
-        
-        if ( borderSize > 0 ) {
-            [[NSColor whiteColor] set];
-            
-            path.lineWidth = borderSize;
+            path.lineWidth = 3 * margin;
             [path stroke];
+        } else {
+        
+            [(NSColor *)colors[b->colorIdx] set];
+        
+            NSRect rect = NSMakeRect(b->x, b->y, b->w, b->h);
+            NSBezierPath *path;
+        
+            if (circles) {
+                path = [NSBezierPath bezierPathWithOvalInRect:rect];
+            } else {
+                path = [NSBezierPath bezierPathWithRect:rect];
+            }
+            [path fill];
+
+            if ( borderSize > 0 ) {
+                [[NSColor whiteColor] set];
+                
+                path.lineWidth = borderSize;
+                [path stroke];
+            }
         }
     }
 }
