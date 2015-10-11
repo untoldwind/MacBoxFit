@@ -13,7 +13,7 @@
 typedef NS_OPTIONS(UInt8, BoxFlags) {
     ALIVE = 1,
     CHANGED = 2,
-    UNDEAD = 4,
+    ACTIVE = 4,
 };
 
 typedef struct {
@@ -102,46 +102,34 @@ typedef struct {
 }
 
 - (void)drawBoxes {
+    if (!growing) {
+        [background set];
+        NSRectFill(self.bounds);
+    }
     for (UInt16 i = 0; i < nboxes; i++) {
         Box *b = &boxes[i];
         
-        if (b->flags & UNDEAD) continue;
-        if (!(b->flags & CHANGED)) continue;
+        if (!(b->flags & ACTIVE)) continue;
+        if (growing && !(b->flags & CHANGED)) continue;
         b->flags &= ~CHANGED;
 
-        if (!growing) {
-            int margin = inc + inc + borderSize;
-            [background set];
-            
-            NSRect rect = NSMakeRect(b->x - margin, b->y - margin, b->w + margin * 2, b->h + margin * 2);
-            NSBezierPath *path;
-            if (circles) {
-                path = [NSBezierPath bezierPathWithOvalInRect:rect];
-            } else {
-                path = [NSBezierPath bezierPathWithRect:rect];
-            }
-            path.lineWidth = 3 * margin;
-            [path stroke];
+        [(NSColor *)colors[b->colorIdx] set];
+        
+        NSRect rect = NSMakeRect(b->x, b->y, b->w, b->h);
+        NSBezierPath *path;
+        
+        if (circles) {
+            path = [NSBezierPath bezierPathWithOvalInRect:rect];
         } else {
-        
-            [(NSColor *)colors[b->colorIdx] set];
-        
-            NSRect rect = NSMakeRect(b->x, b->y, b->w, b->h);
-            NSBezierPath *path;
-        
-            if (circles) {
-                path = [NSBezierPath bezierPathWithOvalInRect:rect];
-            } else {
-                path = [NSBezierPath bezierPathWithRect:rect];
-            }
-            [path fill];
+            path = [NSBezierPath bezierPathWithRect:rect];
+        }
+        [path fill];
 
-            if ( borderSize > 0 ) {
-                [[NSColor whiteColor] set];
+        if ( borderSize > 0 ) {
+            [[NSColor whiteColor] set];
                 
-                path.lineWidth = borderSize;
-                [path stroke];
-            }
+            path.lineWidth = borderSize;
+            [path stroke];
         }
     }
 }
@@ -215,7 +203,7 @@ typedef struct {
 
         nboxes++;
         a = &boxes[nboxes - 1];
-        a->flags = CHANGED;
+        a->flags = CHANGED | ACTIVE;
         
         for (i = 0; i < 100; i++) {
             a->x = SSRandomIntBetween(inc2, size.width - inc2);
@@ -223,7 +211,7 @@ typedef struct {
             a->w = 0;
             a->h = 0;
             
-            if(![self boxCollides:a pad:inc2]) {
+            if(![self boxCollides:a pad:inc2 + 1]) {
                 a->flags |= ALIVE;
                 int n = (horizontal
                          ? (a->x * colors.count / size.width)
@@ -265,6 +253,8 @@ typedef struct {
         
         if (a->w > 0 && a->h > 0)
             remaining++;
+        else
+            a->flags &= ~ACTIVE;
     }
     
     if (remaining == 0) {
@@ -273,6 +263,9 @@ typedef struct {
 }
 
 - (void)resetBoxes {
+    [background set];
+    NSRectFill(self.bounds);
+
     circles = SSRandomIntBetween(0, 1);
     horizontal = SSRandomIntBetween(0, 1);
     nboxes = 0;
